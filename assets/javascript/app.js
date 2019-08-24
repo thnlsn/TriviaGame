@@ -1,6 +1,6 @@
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ timer
 var timeRemaining = 10;
-var timeBetweenQuestions = 3000;
+var timeBetweenQuestions = 2000;
 
 var timing;
 
@@ -48,6 +48,8 @@ $("#start-button").click(function(){
     currentOptionC = options[0][2];
     currentOptionD = options[0][3];
     currentAnswer = answer[0];
+    correct = 0;
+    incorrect = 0;
 
     // ▓▓▓ starts 10 sec timer
     startTimer();
@@ -68,7 +70,7 @@ $("#a").click(function(){
     guessing = false;
     $("#time-row").hide();
     setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
-    setTimeout(function(){timeRemaining = 11;}, 2500);
+    setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
   });
 
 // B
@@ -83,7 +85,7 @@ $("#b").click(function(){
     guessing = false;
     $("#time-row").hide();
     setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
-    setTimeout(function(){timeRemaining = 11;}, 2500);
+    setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
   });
 
 // C
@@ -98,7 +100,7 @@ $("#c").click(function(){
     guessing = false;
     $("#time-row").hide();
     setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
-    setTimeout(function(){timeRemaining = 11;}, 2500);
+    setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
   });
 
 // D
@@ -113,7 +115,7 @@ $("#d").click(function(){
     guessing = false;
     $("#time-row").hide();
     setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
-    setTimeout(function(){timeRemaining = 11;}, 2500);
+    setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
   });
 
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ update whole game
@@ -128,8 +130,8 @@ function updateGame() {
 
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ move to next question, answers, etc.
 function nextQuestion() {
+    questionNumber++;
     if (questionNumber < question.length) {
-        questionNumber++;
         currentQuestion = question[questionNumber];
         currentOptionA = options[questionNumber][0];
         currentOptionB = options[questionNumber][1];
@@ -137,13 +139,16 @@ function nextQuestion() {
         currentOptionD = options[questionNumber][3];
         currentAnswer = answer[questionNumber];
         $("#time-row").show();
+        updateGame();
+        guessing = true;
     } else if (questionNumber >= question.length) {
         //END GAME ▓ ▓ ▓ ▓ ▓ ▓ ▓
+        clearInterval(timing);
         endGame();
 
     }
-    updateGame();
-    guessing = true;
+
+
 }
 
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ timer function
@@ -170,8 +175,9 @@ function update(id, value) {
 
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ endgame function
 function endGame() {
-    $("#correct").text("Correct Answers: " + correct);
-    $("#incorrect").text("Incorrect Answers: " + incorrect);
+    console.log("done");
+    $("#correct").text("Correct Answers: " + correct).show();
+    $("#incorrect").text("Incorrect Answers: " + incorrect).show();
     $("#time-row, #question-row, #options-row").hide();
     $("#start-button").show();
     clearInterval(timing);

@@ -1,0 +1,16 @@
+
+
+.container {
+  width: 80%;
+  margin: 10% auto 30% auto;
+
+}
+
+
+#question-row, #options-row, #time-row {
+  display: none;
+}
+
+h4 {
+  background-color: bisque;
+}

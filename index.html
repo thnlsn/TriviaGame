@@ -1,0 +1,45 @@
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <title>Trivia</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+        <link rel="icon" href="./assets/images/favicon.ico">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div class="row" id="question-row">
+                <div class="col-lg-12 text-center">
+                    <div>
+                        <h3><span id="current-question">current question</span></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="time-row">
+                <h5 class="text-center">Time Remaining: <span id="remaining-time">ten</span> Seconds</h4>
+            </div>
+
+            <div class="row" id="options-row">
+                <div class="col-lg-12">
+                    <h4>A: <span id="a"></span></h4>
+                    <h4>B: <span id="b"></span></h4>
+                    <h4>C: <span id="c"></span></h4>
+                    <h4>D: <span id="d"></span></h4>
+                </div>
+            </div>
+          
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <button type="button" class="btn btn-primary" id="start-button">Start Game</button>
+                </div>
+            </div> 
+
+        </div>              
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="./assets/javascript/app.js"></script>
+    </body>
+</html>

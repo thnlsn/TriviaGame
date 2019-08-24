@@ -2,6 +2,8 @@
 var timeRemaining = 10;
 var timeBetweenQuestions = 3000;
 
+var timing;
+
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ variables
 var correct = 0;
 var incorrect = 0;
@@ -21,7 +23,7 @@ var options = [
 var answer = ["0one", "1two", "2three", "3four"];
 
 //add 1 to each when next quetion
-var questionNumber = 0;
+var questionNumber;
 var currentQuestion;
 var currentOptionA;
 var currentOptionB;
@@ -32,12 +34,13 @@ var currentAnswer;
 //whether we are currently guessing
 var guessing = false;
 
-
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ function start/restart game on button click
 $("#start-button").click(function(){
     $("#options-row, #question-row, #time-row").show();
     $("#start-button").hide();
     //hide the final answer screen
+    $("#correct").hide();
+    $("#incorrect").hide();
     questionNumber = 0;
     currentQuestion = question[0];
     currentOptionA = options[0][0];
@@ -52,7 +55,6 @@ $("#start-button").click(function(){
     guessing = true;
   });
 
-
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ answer click events
 // A
 $("#a").click(function(){
@@ -64,10 +66,12 @@ $("#a").click(function(){
         incorrect++;
     };
     guessing = false;
+    $("#time-row").hide();
     setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
+    setTimeout(function(){timeRemaining = 11;}, 2500);
   });
 
-//B
+// B
 $("#b").click(function(){
     if (guessing === true && (answer[questionNumber] === currentOptionB)) {
         update("#current-question", rightAnswer + answer[questionNumber]);
@@ -77,10 +81,12 @@ $("#b").click(function(){
         incorrect++;
     };
     guessing = false;
+    $("#time-row").hide();
     setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
+    setTimeout(function(){timeRemaining = 11;}, 2500);
   });
 
-//B
+// C
 $("#c").click(function(){
     if (guessing === true && (answer[questionNumber] === currentOptionC)) {
         update("#current-question", rightAnswer + answer[questionNumber]);
@@ -90,10 +96,12 @@ $("#c").click(function(){
         incorrect++;
     };
     guessing = false;
+    $("#time-row").hide();
     setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
+    setTimeout(function(){timeRemaining = 11;}, 2500);
   });
 
-//D
+// D
 $("#d").click(function(){
     if (guessing === true && (answer[questionNumber] === currentOptionD)) {
         update("#current-question", rightAnswer + answer[questionNumber]);
@@ -103,9 +111,10 @@ $("#d").click(function(){
         incorrect++;
     };
     guessing = false;
+    $("#time-row").hide();
     setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
+    setTimeout(function(){timeRemaining = 11;}, 2500);
   });
-
 
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ update whole game
 function updateGame() {
@@ -115,8 +124,7 @@ function updateGame() {
     update("#b", currentOptionB);
     update("#c", currentOptionC);
     update("#d", currentOptionD);
-}
-
+};
 
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ move to next question, answers, etc.
 function nextQuestion() {
@@ -129,30 +137,30 @@ function nextQuestion() {
         currentOptionD = options[questionNumber][3];
         currentAnswer = answer[questionNumber];
         $("#time-row").show();
-    } else {
+    } else if (questionNumber >= question.length) {
         //END GAME ▓ ▓ ▓ ▓ ▓ ▓ ▓
+        endGame();
+
     }
     updateGame();
     guessing = true;
 }
 
-
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ timer function
 function startTimer() {
-    var timing = setInterval(function() {
+    timing = setInterval(function() {
         timeRemaining--;
         update("#remaining-time", timeRemaining);
-        if (timeRemaining === 0) {
+        if (timeRemaining === -1) {
             $("#time-row").hide();
             guessing = false;
             update("#current-question", wrongAnswer + answer[questionNumber]);
             incorrect++;
             setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
-            setTimeout(function(){timeRemaining = 10;}, 0);
+            setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
         };
     }, 1000);
 };
-
 
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ updates html elements
 function update(id, value) {
@@ -160,7 +168,14 @@ function update(id, value) {
 };
 
 
-// ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 
+// ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ endgame function
+function endGame() {
+    $("#correct").text("Correct Answers: " + correct);
+    $("#incorrect").text("Incorrect Answers: " + incorrect);
+    $("#time-row, #question-row, #options-row").hide();
+    $("#start-button").show();
+    clearInterval(timing);
+};
 
 
 
@@ -179,87 +194,8 @@ function update(id, value) {
 
 //RUN THIS BEFORE STARTIBNG NEW GAME
 /*          clearInterval(startTimer);
-            timeRemaining = 10; */
+            timeRemaining = 11; */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//if button clicked is true
-    //show answer
-    //set timer to 5
-//else if button clicked is false
-    //show answer
-//else if timer reaches
-
-
-
-
-//CLICK EVENT - start button click event
-    //hide start game button
-    //set timer to 10 seconds
-        //when timer ends, run correct answer FUNCTION with wrong answer VAR
-    //show time remaining, question, and options
-
-//CLICK EVENT - option A, B, C, and D.
-    //if a = false,
-        //turn red while pressed
-        //incorrect++
-        //html --> wrong answer VAR
-    //else,
-        //turn green while pressed
-        //correct++
-        //html --> wrong answer VAR
-    //
-
-//FUNCTION - correct answer display
-    // add a <p> that states right or wrong and says the correct answer above the buttons
-    //timer for 5 seconds...
-        //show the NEXT question, with then next options ect.
-        //set timer to 10 again
-
-//
 
 
 

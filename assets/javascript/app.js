@@ -59,7 +59,7 @@ $("#start-button").click(function(){
 
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ answer click events
 // A
-$("#a").click(function(){
+$("#aa").click(function(){
     if (guessing === true && (answer[questionNumber] === currentOptionA)) {
         update("#current-question", rightAnswer + answer[questionNumber]);
         correct++;
@@ -67,14 +67,11 @@ $("#a").click(function(){
         update("#current-question", wrongAnswer + answer[questionNumber]);
         incorrect++;
     };
-    guessing = false;
-    $("#time-row").hide();
-    setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
-    setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
+    clickOption()
   });
 
 // B
-$("#b").click(function(){
+$("#bb").click(function(){
     if (guessing === true && (answer[questionNumber] === currentOptionB)) {
         update("#current-question", rightAnswer + answer[questionNumber]);
         correct++;
@@ -82,14 +79,11 @@ $("#b").click(function(){
         update("#current-question", wrongAnswer + answer[questionNumber]);
         incorrect++;
     };
-    guessing = false;
-    $("#time-row").hide();
-    setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
-    setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
+    clickOption()
   });
 
 // C
-$("#c").click(function(){
+$("#cc").click(function(){
     if (guessing === true && (answer[questionNumber] === currentOptionC)) {
         update("#current-question", rightAnswer + answer[questionNumber]);
         correct++;
@@ -97,14 +91,11 @@ $("#c").click(function(){
         update("#current-question", wrongAnswer + answer[questionNumber]);
         incorrect++;
     };
-    guessing = false;
-    $("#time-row").hide();
-    setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
-    setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
+    clickOption()
   });
 
 // D
-$("#d").click(function(){
+$("#dd").click(function(){
     if (guessing === true && (answer[questionNumber] === currentOptionD)) {
         update("#current-question", rightAnswer + answer[questionNumber]);
         correct++;
@@ -112,10 +103,7 @@ $("#d").click(function(){
         update("#current-question", wrongAnswer + answer[questionNumber]);
         incorrect++;
     };
-    guessing = false;
-    $("#time-row").hide();
-    setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
-    setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
+    clickOption()
   });
 
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ update whole game
@@ -142,14 +130,11 @@ function nextQuestion() {
         updateGame();
         guessing = true;
     } else if (questionNumber >= question.length) {
-        //END GAME ▓ ▓ ▓ ▓ ▓ ▓ ▓
+        //END GAME
         clearInterval(timing);
         endGame();
-
-    }
-
-
-}
+    };
+};
 
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ timer function
 function startTimer() {
@@ -170,6 +155,16 @@ function startTimer() {
 // ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ updates html elements
 function update(id, value) {
     $(id).html(value);
+};
+
+// ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ function for all option clicks
+function clickOption() {
+    guessing = false;
+    $("#time-row").hide();
+    $(".option").hide();
+    setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
+    setTimeout(function(){$(".option").show(); }, timeBetweenQuestions);
+    setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
 };
 
 

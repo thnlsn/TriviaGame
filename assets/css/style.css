@@ -1,9 +1,21 @@
+body {
+  background-image: url('../images/parchment.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 
+  font-family: 'Oleo Script', cursive;
+  color: #49080d;
+}
+
+h1, h2, h3, h4, h5 {
+  font-size: 30px !important;
+}
 
 .container {
   width: 80%;
-  margin: 10% auto 30% auto;
-
+  margin: 10% auto 20% auto;
 }
 
 
@@ -11,6 +23,32 @@
   display: none;
 }
 
-h4 {
-  background-color: bisque;
+.option {
+  margin: 2% 0;
 }
+
+#question-row {
+  margin: 10% 0;
+}
+
+#time-row {
+  margin: 10% 0;
+  color: #a95403;
+}
+
+#remaining-time {
+  color: #753901;
+}
+
+#options-row {
+  margin: 10% 0;
+}
+
+#start-button {
+  background-color: #771705;
+  border-color: #771605a1;
+  padding: 2% 5% 2% 5%;
+  margin: 20% 0 5% 0;
+  font-size: 50px;
+}
+

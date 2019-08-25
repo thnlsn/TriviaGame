@@ -11,16 +11,21 @@ var incorrect = 0;
 var rightAnswer = "You got it! The answer was... "
 var wrongAnswer = "Sorry, the correct answer was... "
 
-var question = ["Who?", "What?", "When?", "Where?"];
-
-var options = [
-    ["0one", "0two", "0three", "0four"],
-    ["1one", "1two", "1three", "1four"],
-    ["2one", "2two", "2three", "2four"],
-    ["3one", "3two", "3three", "3four"],
+var question = [
+    "Which of these was Mozart's middle name?",
+    "How many man made artifacts on Earth can be seen from space?",
+    "Albert Einstein never learned to _____.",
+    "The _____ originated in Croatia."
 ];
 
-var answer = ["0one", "1two", "2three", "3four"];
+var options = [
+    ["Amadeus", "Homer", "Wolfgangus", "Johannes"],
+    ["One, the Great Wall", "None", "About 8, on a clear day", "Thousands"],
+    ["divide", "drive a car", "tie his shoes", "read"],
+    ["necktie", "fork", "ballpoint pen", "chainsaw"],
+];
+
+var answer = ["Wolfgangus", "Thousands", "drive a car", "necktie"];
 
 //add 1 to each when next quetion
 var questionNumber;
@@ -146,7 +151,9 @@ function startTimer() {
             guessing = false;
             update("#current-question", wrongAnswer + answer[questionNumber]);
             incorrect++;
+            $(".option").hide();
             setTimeout(function(){nextQuestion(); }, timeBetweenQuestions);
+            setTimeout(function(){$(".option").show(); }, timeBetweenQuestions);
             setTimeout(function(){timeRemaining = 11;}, timeBetweenQuestions - 500);
         };
     }, 1000);

@@ -202,7 +202,7 @@ function endGame() {
 
 //RUN THIS BEFORE STARTIBNG NEW GAME
 /*          clearInterval(startTimer);
-            timeRemaining = 11;;; */
+            timeRemaining = 11; */
 
 //▓▓▓▓▓▓▓▓▓▓▓▓▓▓ function to shake answer
 jQuery.fn.shake = function(interval, distance, times) {
